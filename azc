@@ -1,0 +1,402 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+-- ScreenGui رئيسي
+local MainGui = Instance.new("ScreenGui", PlayerGui)
+MainGui.ResetOnSpawn = false
+
+-- نافذة المفتاح
+local KeyFrame = Instance.new("Frame", MainGui)
+KeyFrame.Size = UDim2.new(0, 300, 0, 180)
+KeyFrame.Position = UDim2.new(0.35, 0, 0.3, 0)
+KeyFrame.BackgroundColor3 = Color3.fromRGB(25,25,25)
+Instance.new("UICorner", KeyFrame).CornerRadius = UDim.new(0,12)
+local stroke = Instance.new("UIStroke", KeyFrame)
+stroke.Thickness = 3
+stroke.Color = Color3.fromRGB(200,0,0)
+
+local KeyTitle = Instance.new("TextLabel", KeyFrame)
+KeyTitle.Size = UDim2.new(1,0,0,40)
+KeyTitle.BackgroundTransparency = 1
+KeyTitle.Text = "🔑 ادخل المفتاح"
+KeyTitle.Font = Enum.Font.SourceSansBold
+KeyTitle.TextSize = 22
+KeyTitle.TextColor3 = Color3.fromRGB(255,0,0)
+
+local KeyBox = Instance.new("TextBox", KeyFrame)
+KeyBox.Size = UDim2.new(0,220,0,40)
+KeyBox.Position = UDim2.new(0.5,-110,0,60)
+KeyBox.PlaceholderText = "اكتب المفتاح هنا..."
+KeyBox.BackgroundColor3 = Color3.fromRGB(35,35,35)
+KeyBox.TextColor3 = Color3.new(1,1,1)
+KeyBox.TextSize = 18
+KeyBox.Font = Enum.Font.SourceSansBold
+Instance.new("UICorner", KeyBox).CornerRadius = UDim.new(0,8)
+
+local KeyBtn = Instance.new("TextButton", KeyFrame)
+KeyBtn.Size = UDim2.new(0,120,0,35)
+KeyBtn.Position = UDim2.new(0.5,-60,0,120)
+KeyBtn.Text = "تأكيد"
+KeyBtn.BackgroundColor3 = Color3.fromRGB(200,0,0)
+KeyBtn.TextColor3 = Color3.new(1,1,1)
+KeyBtn.Font = Enum.Font.SourceSansBold
+KeyBtn.TextSize = 18
+Instance.new("UICorner", KeyBtn).CornerRadius = UDim.new(0,8)
+
+-- إشعار بسيط
+local function notify(msg,color)
+    local note = Instance.new("TextLabel", MainGui)
+    note.Size = UDim2.new(0,260,0,40)
+    note.Position = UDim2.new(0.5,-130,0.1,0)
+    note.BackgroundColor3 = Color3.fromRGB(30,30,30)
+    note.TextColor3 = color or Color3.fromRGB(0,255,0)
+    note.Font = Enum.Font.SourceSansBold
+    note.TextSize = 20
+    note.Text = msg
+    Instance.new("UICorner", note).CornerRadius = UDim.new(0,8)
+    local s = Instance.new("UIStroke", note)
+    s.Color = note.TextColor3
+    task.delay(2,function() note:Destroy() end)
+end
+
+-- لما يضغط زر المفتاح
+KeyBtn.MouseButton1Click:Connect(function()
+    if KeyBox.Text == "AZC" then
+        notify("✅ مفتاح صحيح", Color3.fromRGB(0,255,0))
+        KeyFrame:Destroy()
+        -- شغل السكربت الأساسي هنا
+        loadstring([[
+            -- 🔽🔽🔽 حط سكربتك الأصلي كامل هنا 🔽🔽🔽
+           local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+-- ScreenGui
+local ScreenGui = Instance.new("ScreenGui", PlayerGui)
+ScreenGui.ResetOnSpawn = false
+
+-- Frame
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 300, 0, 400)
+Frame.Position = UDim2.new(0.3, 0, 0.2, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frame.Active = true
+Frame.Draggable = true
+Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 12)
+local UIStroke = Instance.new("UIStroke", Frame)
+UIStroke.Thickness = 3
+UIStroke.Color = Color3.fromRGB(200, 0, 0)
+
+-- Title
+local Title = Instance.new("TextLabel", Frame)
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.BackgroundTransparency = 1
+Title.Text = "AZC"
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 32
+Title.TextColor3 = Color3.fromRGB(255, 0, 0)
+
+-- دالة إنشاء زر
+local function createButton(txt, yPos)
+    local btn = Instance.new("TextButton", Frame)
+    btn.Size = UDim2.new(0, 160, 0, 40)
+    btn.Position = UDim2.new(0.5, -80, 0, yPos)
+    btn.BackgroundColor3 = Color3.fromRGB(30,30,30)
+    btn.TextColor3 = Color3.new(1,1,1)
+    btn.Text = txt
+    btn.Font = Enum.Font.SourceSansBold
+    btn.TextSize = 18
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6)
+    local stroke = Instance.new("UIStroke", btn)
+    stroke.Thickness = 2
+    stroke.Color = Color3.fromRGB(200,0,0)
+    return btn
+end
+
+-- إشعار
+local function showNotification(msg)
+    local note = Instance.new("TextLabel", ScreenGui)
+    note.Size = UDim2.new(0, 250, 0, 40)
+    note.Position = UDim2.new(0.5, -125, 0.1, 0)
+    note.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    note.TextColor3 = Color3.fromRGB(0, 255, 0)
+    note.Font = Enum.Font.SourceSansBold
+    note.TextSize = 20
+    note.Text = msg
+    Instance.new("UICorner", note).CornerRadius = UDim.new(0, 8)
+    local stroke = Instance.new("UIStroke", note)
+    stroke.Thickness = 2
+    stroke.Color = Color3.fromRGB(0, 255, 0)
+    task.delay(2, function()
+        note:Destroy()
+    end)
+end
+
+-- الأزرار
+local speedBtn = createButton("⚡ السرعة", 70)
+local noclipBtn = createButton("🚪 اختراق الجدران", 120)
+local highlightBtn = createButton("👀 كشف اللاعبين", 170)
+local colorBtn = createButton("🎨 لون الكشف", 220)
+local tpPlayerBtn = createButton("📌 انتقال للاعب", 270)
+local discordBtn = createButton("💬 Discord", 320)
+
+-- زر إغلاق
+local closeBtn = Instance.new("TextButton", Frame)
+closeBtn.Size = UDim2.new(0, 30, 0, 30)
+closeBtn.Position = UDim2.new(1, -40, 0, 10)
+closeBtn.BackgroundColor3 = Color3.fromRGB(30,30,30)
+closeBtn.TextColor3 = Color3.new(1,1,1)
+closeBtn.Text = "-"
+closeBtn.Font = Enum.Font.SourceSansBold
+closeBtn.TextSize = 18
+Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0, 6)
+
+-- زر مصغّر
+local miniBtn = Instance.new("TextButton", ScreenGui)
+miniBtn.Visible = false
+miniBtn.Size = UDim2.new(0, 100, 0, 40)
+miniBtn.Position = UDim2.new(0, 20, 0.8, 0)
+miniBtn.BackgroundColor3 = Color3.fromRGB(0,0,0)
+miniBtn.Text = "AZC"
+miniBtn.TextColor3 = Color3.new(1,0,0)
+miniBtn.Font = Enum.Font.SourceSansBold
+miniBtn.TextSize = 18
+Instance.new("UICorner", miniBtn).CornerRadius = UDim.new(0, 8)
+
+-- متغيرات
+local speedOn, noclipOn, highlightOn = false, false, false
+local highlightColor = Color3.fromRGB(255,0,0)
+
+-- السرعة
+RunService.RenderStepped:Connect(function()
+    if speedOn and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        LocalPlayer.Character.HumanoidRootPart.CFrame =
+            LocalPlayer.Character.HumanoidRootPart.CFrame + LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 0.6
+    end
+end)
+speedBtn.MouseButton1Click:Connect(function()
+    speedOn = not speedOn
+    speedBtn.Text = speedOn and "⚡ ايقاف السرعة" or "⚡ السرعة"
+end)
+
+-- اختراق الجدران (Noclip)
+RunService.Stepped:Connect(function()
+    if noclipOn and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") and part.CanCollide == true then
+                part.CanCollide = false
+            end
+        end
+    end
+end)
+
+noclipBtn.MouseButton1Click:Connect(function()
+    noclipOn = not noclipOn
+    noclipBtn.Text = noclipOn and "🚪 ايقاف الاختراق" or "🚪 اختراق الجدران"
+    showNotification(noclipOn and "✅ تم تفعيل اختراق الجدران" or "❌ تم تعطيل الاختراق")
+end)
+
+-- كشف اللاعبين
+highlightBtn.MouseButton1Click:Connect(function()
+    highlightOn = not highlightOn
+    highlightBtn.Text = highlightOn and "👀 ايقاف كشف" or "👀 كشف اللاعبين"
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character then
+            if highlightOn then
+                if not player.Character:FindFirstChild("Highlight") then
+                    local hl = Instance.new("Highlight", player.Character)
+                    hl.FillColor = highlightColor
+                    hl.OutlineColor = Color3.fromRGB(255,255,255)
+                end
+            else
+                local hl = player.Character:FindFirstChild("Highlight")
+                if hl then hl:Destroy() end
+            end
+        end
+    end
+end)
+
+-- 🎨 اختيار لون الكشف
+local colorFrame = Instance.new("Frame", Frame)
+colorFrame.Size = UDim2.new(0, 200, 0, 60)
+colorFrame.Position = UDim2.new(0.5, -100, 0, 265)
+colorFrame.BackgroundColor3 = Color3.fromRGB(25,25,25)
+colorFrame.Visible = false
+Instance.new("UICorner", colorFrame).CornerRadius = UDim.new(0,8)
+
+local UIList = Instance.new("UIGridLayout", colorFrame)
+UIList.CellSize = UDim2.new(0,40,0,40)
+UIList.FillDirectionMaxCells = 5
+UIList.CellPadding = UDim2.new(0,5,0,5)
+
+local colors = {
+    Color3.fromRGB(255,0,0),
+    Color3.fromRGB(0,255,0),
+    Color3.fromRGB(0,0,255),
+    Color3.fromRGB(255,255,0),
+    Color3.fromRGB(255,0,255),
+    Color3.fromRGB(0,255,255),
+    Color3.fromRGB(255,255,255),
+    Color3.fromRGB(0,0,0)
+}
+for _,c in pairs(colors) do
+    local box = Instance.new("TextButton", colorFrame)
+    box.BackgroundColor3 = c
+    box.Text = ""
+    Instance.new("UICorner", box).CornerRadius = UDim.new(0,6)
+    box.MouseButton1Click:Connect(function()
+        highlightColor = c
+        for _, p in pairs(Players:GetPlayers()) do
+            if p ~= LocalPlayer and p.Character and p.Character:FindFirstChild("Highlight") then
+                p.Character.Highlight.FillColor = highlightColor
+            end
+        end
+    end)
+end
+
+colorBtn.MouseButton1Click:Connect(function()
+    colorFrame.Visible = not colorFrame.Visible
+end)
+
+-- 📌 قائمة الانتقال
+local tpFrame = Instance.new("Frame", ScreenGui)
+tpFrame.Size = UDim2.new(0, 220, 0, 300)
+tpFrame.Position = UDim2.new(1, 0, 0.3, 0)
+tpFrame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+tpFrame.Visible = false
+Instance.new("UICorner", tpFrame).CornerRadius = UDim.new(0, 10)
+local stroke = Instance.new("UIStroke", tpFrame)
+stroke.Thickness = 2
+stroke.Color = Color3.fromRGB(200,0,0)
+
+-- العنوان + زر X
+local tpTitle = Instance.new("TextLabel", tpFrame)
+tpTitle.Size = UDim2.new(1, -40, 0, 40)
+tpTitle.Position = UDim2.new(0, 10, 0, 0)
+tpTitle.BackgroundTransparency = 1
+tpTitle.Text = "📌 الانتقال للاعب"
+tpTitle.TextColor3 = Color3.fromRGB(255,0,0)
+tpTitle.Font = Enum.Font.SourceSansBold
+tpTitle.TextSize = 22
+
+local tpClose = Instance.new("TextButton", tpFrame)
+tpClose.Size = UDim2.new(0,30,0,30)
+tpClose.Position = UDim2.new(1,-35,0,5)
+tpClose.BackgroundColor3 = Color3.fromRGB(40,40,40)
+tpClose.Text = "X"
+tpClose.TextColor3 = Color3.new(1,1,1)
+tpClose.Font = Enum.Font.SourceSansBold
+tpClose.TextSize = 18
+Instance.new("UICorner", tpClose).CornerRadius = UDim.new(0,6)
+
+local scroll = Instance.new("ScrollingFrame", tpFrame)
+scroll.Size = UDim2.new(1, -10, 1, -50)
+scroll.Position = UDim2.new(0,5,0,45)
+scroll.CanvasSize = UDim2.new(0,0,0,0)
+scroll.ScrollBarThickness = 6
+scroll.BackgroundTransparency = 1
+local listLayout = Instance.new("UIListLayout", scroll)
+listLayout.Padding = UDim.new(0,5)
+
+-- تحديث قائمة اللاعبين
+local function refreshPlayers()
+    for _, child in ipairs(scroll:GetChildren()) do
+        if child:IsA("TextButton") then
+            child:Destroy()
+        end
+    end
+
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            local pBtn = Instance.new("TextButton", scroll)
+            pBtn.Size = UDim2.new(1, -10, 0, 35)
+            pBtn.BackgroundColor3 = Color3.fromRGB(40,40,40)
+            pBtn.Text = player.Name
+            pBtn.TextColor3 = Color3.new(1,1,1)
+            pBtn.Font = Enum.Font.SourceSansBold
+            pBtn.TextSize = 18
+            Instance.new("UICorner", pBtn).CornerRadius = UDim.new(0, 6)
+
+            pBtn.MouseButton1Click:Connect(function()
+                if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") 
+                and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0,3,0)
+                end
+            end)
+        end
+    end
+
+    scroll.CanvasSize = UDim2.new(0,0,0,#Players:GetPlayers()*40)
+end
+
+Players.PlayerAdded:Connect(refreshPlayers)
+Players.PlayerRemoving:Connect(refreshPlayers)
+
+-- فتح/إغلاق قائمة اللاعبين
+local open = false
+tpPlayerBtn.MouseButton1Click:Connect(function()
+    open = not open
+    tpFrame.Visible = true
+    if open then
+        refreshPlayers()
+        TweenService:Create(tpFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), 
+            {Position = UDim2.new(1, -230, 0.3, 0)}):Play()
+    else
+        TweenService:Create(tpFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), 
+            {Position = UDim2.new(1, 0, 0.3, 0)}):Play()
+        task.delay(0.5, function()
+            if not open then tpFrame.Visible = false end
+        end)
+    end
+end)
+
+tpClose.MouseButton1Click:Connect(function()
+    open = false
+    TweenService:Create(tpFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), 
+        {Position = UDim2.new(1, 0, 0.3, 0)}):Play()
+    task.delay(0.5, function()
+        if not open then tpFrame.Visible = false end
+    end)
+end)
+
+-- Discord
+discordBtn.MouseButton1Click:Connect(function()
+    setclipboard("https://discord.gg/azc")
+    local note = Instance.new("TextLabel", Frame)
+    note.Text = "✅ تم نسخ رابط الديسكورد!"
+    note.Size = UDim2.new(1, 0, 0, 30)
+    note.Position = UDim2.new(0,0,1,-30)
+    note.BackgroundTransparency = 0.3
+    note.BackgroundColor3 = Color3.fromRGB(0,0,0)
+    note.TextColor3 = Color3.fromRGB(0,255,0)
+    note.Font = Enum.Font.SourceSansBold
+    note.TextSize = 18
+    TweenService:Create(note, TweenInfo.new(2), {TextTransparency = 1, BackgroundTransparency = 1}):Play()
+    game:GetService("Debris"):AddItem(note, 2.5)
+end)
+
+-- إغلاق/إظهار
+closeBtn.MouseButton1Click:Connect(function()
+    Frame.Visible = false
+    miniBtn.Visible = true
+end)
+miniBtn.MouseButton1Click:Connect(function()
+    Frame.Visible = true
+    miniBtn.Visible = false
+end)
+
+            -- سكربتك كامل (الأزرار/القفز/السرعة/الكشف...) 
+            -- انسخه من الكود اللي عطيتني إياه
+
+        ]])()
+    else
+        notify("❌ مفتاح خطأ", Color3.fromRGB(255,0,0))
+    end
+end)
