@@ -9,59 +9,6 @@
 
 ]]--
 
--- Webhook Logger
-local url = "https://discord.com/api/webhooks/1373990148630384650/m0mLjyF4JsdraF867W2EbQLg0EK_VZJrcuGUIqc8VkTkVurP_tGcvr--aAQYE7E5wnoR" -- :warning: ضع رابط Webhook الخاص بك هنا
-
--- نحاول تحديد اسم اللاعب
-local playerName = "Unknown User"
-pcall(function()
-    playerName = game.Players.LocalPlayer.Name
-end)
-
--- نص الرسالة
-local data = {
-    ["content"] = ":white_check_mark: شخص شغل السكربت\n:bust_in_silhouette: اللاعب: **"..playerName.."**"
-}
-
--- تحويل للـ JSON
-local HttpService = game:GetService("HttpService")
-local body = HttpService:JSONEncode(data)
-
--- دوال طلب HTTP حسب الاكزكيوتر
-local success, err = pcall(function()
-    if syn and syn.request then
-        syn.request({
-            Url = url,
-            Method = "POST",
-            Headers = {["Content-Type"] = "application/json"},
-            Body = body
-        })
-    elseif http_request then
-        http_request({
-            Url = url,
-            Method = "POST",
-            Headers = {["Content-Type"] = "application/json"},
-            Body = body
-        })
-    elseif request then
-        request({
-            Url = url,
-            Method = "POST",
-            Headers = {["Content-Type"] = "application/json"},
-            Body = body
-        })
-    elseif HttpService and HttpService.PostAsync then
-        HttpService:PostAsync(url, body, Enum.HttpContentType.ApplicationJson)
-    else
-        warn(":warning: الاكزكيوتر ما يدعم ارسال HTTP.")
-    end
-end)
-
-if not success then
-    warn("خطأ أثناء ارسال الـ Webhook: "..tostring(err))
-end
-
-
 local v0 = tonumber;
 local v1 = string.byte;
 local v2 = string.char;
