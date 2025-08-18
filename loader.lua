@@ -1,4 +1,3 @@
--- loader.lua
 local url = "https://raw.githubusercontent.com/vtxontop/r3d/main/vtxx.lua"
 
 local success, response = pcall(function()
@@ -8,7 +7,7 @@ end)
 if success and response and response ~= "" then
     local func, err = loadstring(response)
     if func then
-        print("✅ تم تحميل vtxx.lua من GitHub")
+        print("✅ تم تحميل vtxx.lua ")
         func()
     else
         warn("❌ خطأ أثناء تحويل الكود: " .. tostring(err))
@@ -16,3 +15,6 @@ if success and response and response ~= "" then
 else
     warn("❌ فشل تحميل الملف من GitHub. تأكد من الرابط أو من وجود vtxx.lua في المستودع r3d.")
 end
+
+
+----- vtx on toppp
