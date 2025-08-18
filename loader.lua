@@ -1,7 +1,7 @@
 local HttpService = game:GetService("HttpService")
 
 -- رابط vtx.lua من Pastebin (raw link)
-local url = "https://pastebin.com/raw/XXXXXXXX" -- غير XXXXX برابطك
+local url = "https://raw.githubusercontent.com/vtxontop/main.lua/refs/heads/main/vtx.lua" -- غير XXXXX برابطك
 
 local success, response = pcall(function()
     return game:HttpGet(url)
