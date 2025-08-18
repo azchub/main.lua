@@ -16,7 +16,7 @@ if success and response then
     if decoded then
         loadstring(decoded)()
     else
-        warn("❌ فشل فك التشفير (Base64 غير صحيح)")
+        warn("❌ فشل ككه فك التشفير (Base64 غير صحيح)")
     end
 else
     warn("❌ فشل تحميل الرابط")
