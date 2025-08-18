@@ -1,18 +1,30 @@
--- Loader.lua
-local url = "https://raw.githubusercontent.com/vtxontop/main.lua/refs/heads/main/vtx.lua"
+-- Loader Script
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
 
+-- إنشاء ScreenGui إذا ما كان موجود
+local ScreenGui = PlayerGui:FindFirstChild("VTX_GUI")
+if not ScreenGui then
+    ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "VTX_GUI"
+    ScreenGui.ResetOnSpawn = false
+    ScreenGui.Parent = PlayerGui
+end
+
+-- تحميل سكربت خارجي (vtx.lua)
 local success, response = pcall(function()
-    return game:HttpGet(url)
+    return game:HttpGet("https://raw.githubusercontent.com/vtxontop/main.lua/refs/heads/main/vtx.lua")
 end)
 
-if success and response and #response > 0 then
-    local func, err = loadstring(response)
+if success then
+    local func = loadstring(response)
     if func then
-        print("✅ تم تحميل vtx.lua وتشغيله")
         func()
+        warn("✅ VTX Script Loaded Successfully")
     else
-        warn("❌ خطأ في تحويل الكود:", err)
+        warn("⚠️ Failed to compile vtx.lua")
     end
 else
-    warn("❌ فشل تحميل الملف من الرابط")
+    warn("⚠️ Error loading vtx.lua: ", response)
 end
