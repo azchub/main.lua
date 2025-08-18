@@ -1,5 +1,5 @@
 -- Loader.lua
-local url = "https://pastebin.com/raw/rY1cTmAU"
+local url = "https://pastebin.com/raw/wXggQD5S"
 local success, response = pcall(function()
     return game:HttpGet(url)
 end)
