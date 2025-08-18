@@ -1,2 +1,2 @@
-local url = "https://raw.githubusercontent.com/vtxontop/main.lua/refs/heads/main/vtx.lua"
+local url = "https://github.com/vtxontop/main.lua/blob/main/vtx.lua"
 loadstring(game:HttpGet(url))()
